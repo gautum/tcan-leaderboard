@@ -5,9 +5,9 @@ var fs = require('fs');
 
 var bot = new Discord.Client({autoReconnect: true});
 
-bot.OWNERID = '<your-discord-id>';
-bot.PREFIX = '<bot-prefix>';
-bot.TOKEN = '<bot-token>';
+bot.OWNERID = '258436897435680769';
+bot.PREFIX = '!';
+bot.TOKEN = 'NDE1OTYzNTgyNjczNzE1MjEw.DXYKGQ.xWKoo-xiVQ7GyWZqrgkbLyG6-fQ';
 
 bot.DETAILED_LOGGING = false;
 bot.DELETE_COMMANDS = false;
@@ -31,7 +31,7 @@ bot.sendNotification = function(info, type, msg) {
 		color: icolor,
 		description: info
 	}
-	msg.channel.sendMessage('', {embed});
+	msg.channel.send('', {embed});
 }
 
 var commands = {}
@@ -62,7 +62,7 @@ commands.help.main = function(bot, msg) {
 		}
 	}
 	
-	msg.channel.sendMessage('', {embed});
+	msg.channel.send('', {embed});
 }
 
 commands.load = {};
@@ -116,7 +116,7 @@ commands.reload.main = function(bot, msg) {
             bot.sendNotification("Reloaded " + msg.content + ".js successfully.", "success", msg);
         }
         catch(err){
-            msg.channel.sendMessage("Command not found");
+            msg.channel.send("Command not found");
         }
     }else {
 		bot.sendNotification("You do not have permission to use this command.", "error", msg);
