@@ -5,7 +5,7 @@ let config = require('../config');
 
 module.exports = {
 	 add: function (bot, msg) {
-		console.log('in add');
+		console.log('__LEADERBOARD --> ADD__');
 		let start = Date.now();
 		let stop, diff;
 		let platform = msg.content.split(" ")[2] || "pc";
@@ -15,20 +15,26 @@ module.exports = {
 		.set('TRN-Api-Key', config.SECRET)
 		.end((err, res) => {
 			if (err) {
-				msg.channel.send(`Can not find user ${epicId}.`);
+				msg.channel.send(`Uh oh.  Something went wrong: `+ err);
 				return;
 			}
-			console.log(err);
-			players.set(epicId, res.body.stats);
-			stop = Date.now();
-			diff = (stop - start);
-			msg.channel.send(`Successfully added ${epicId} in ${diff}ms.`);
+			console.log(res.body);
+			if (res.body.error) {
+				stop = Date.now();
+				diff = (stop - start);
+				msg.channel.send(`Could not find player ${epicId} in ${diff}ms.`);
+			} else {
+				players.set(epicId, res.body.stats);
+				stop = Date.now();
+				diff = (stop - start);
+				msg.channel.send(`Successfully added ${epicId} in ${diff}ms.`);
+			}
 		});
 	 },
      main: function(bot, msg) {
+		console.log('__INIT LEADERBOARD__');
 		let start = Date.now();
 		let stop, diff;
-		console.log('init leaderboard');
 		let directive = msg.content.split(" ")[0];
 		let leaderboardMsg = "Leaderboard:\n\n";
 		if (directive == "add") {
