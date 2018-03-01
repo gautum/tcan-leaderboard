@@ -9,7 +9,7 @@ bot.OWNERID = '258436897435680769';
 bot.PREFIX = '!';
 bot.TOKEN = 'NDE1OTYzNTgyNjczNzE1MjEw.DXYKGQ.xWKoo-xiVQ7GyWZqrgkbLyG6-fQ';
 
-bot.DETAILED_LOGGING = false;
+bot.DETAILED_LOGGING = true;
 bot.DELETE_COMMANDS = false;
 
 bot.COLOR = 0x351C75;
